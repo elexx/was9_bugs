@@ -18,6 +18,8 @@ package at.struct.cdieartest.util;
 
 import javax.enterprise.inject.spi.Extension;
 import java.util.Arrays;
+import java.util.Set;
+import java.util.concurrent.ConcurrentSkipListSet;
 import java.util.logging.Logger;
 
 /**
@@ -26,7 +28,10 @@ import java.util.logging.Logger;
  */
 public class LogUtil {
 
-    public static void logInvocation(Extension extension, ClassLoader cl, String... params) {
+    public static final String LOG_SEPARATOR = "------------------------------------------------------------------------------------------------------------------------------\n";
+    private static Set<String> classesToCheck = new ConcurrentSkipListSet<String>();
+
+    public static void logExtensionInvocation(Extension extension, ClassLoader cl, String... params) {
         Logger logger = Logger.getLogger(Thread.currentThread().getStackTrace()[2].getClassName());
 
         String methodName = Thread.currentThread().getStackTrace()[2].getMethodName();
@@ -39,8 +44,32 @@ public class LogUtil {
         if (params != null) {
             sb.append("params = ").append(Arrays.toString(params)).append('\n');
         }
-        sb.append("------------------------------------------------------------------------------------------------------------------------------\n");
+        sb.append(LOG_SEPARATOR);
 
         logger.info(sb.toString());
+    }
+
+    public static void logVisibility(Object caller, String callerMessage) {
+        Logger logger = Logger.getLogger(caller.getClass().getName());
+
+        ClassLoader callerClassLoader = caller.getClass().getClassLoader();
+
+        StringBuilder sb = new StringBuilder(callerMessage);
+        sb.append("\nClass ").append(caller.getClass().getName()).append(" can see \n\t");
+
+        for (String classToCheckBeingVisible : classesToCheck) {
+            try {
+                callerClassLoader.loadClass(classToCheckBeingVisible);
+                sb.append(classToCheckBeingVisible).append(" : YES\n\t");
+            } catch (ClassNotFoundException e) {
+                sb.append(classToCheckBeingVisible).append(" : NO\n\t");
+            }
+        }
+        sb.append(LOG_SEPARATOR);
+        logger.info(sb.toString());
+    }
+
+    public static void addClassToCheckForVisibility(Class<?> clazz) {
+        classesToCheck.add(clazz.getName());
     }
 }

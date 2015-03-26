@@ -14,29 +14,30 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package at.struct.cdieartest;
+package at.struct.cdieartest.ejb1;
 
-import javax.enterprise.event.Observes;
-import javax.enterprise.inject.spi.ProcessAnnotatedType;
+import javax.ejb.Stateless;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
 
-import at.struct.cdieartest.util.BaseLoggingExtension;
 import at.struct.cdieartest.util.LogUtil;
 import at.struct.cdieartest.util.VisibilityChecked;
 
 /**
- * A CDI Extension registered directly in the EAR.
+ * A simple Rest endpoint just saying hello
  *
  * @author <a href="mailto:struberg@yahoo.de">Mark Struberg</a>
  */
-public class EarLoggingExtension extends BaseLoggingExtension {
+@Path("/rest1")
+@Stateless
+@VisibilityChecked
+public class RestEndpoint1 {
 
+    @GET
+    public String ping(){
+        LogUtil.logVisibility(this, "Invocation from REST EJB 1");
 
-    /**
-     * add every class we find (except Extensions) to our visibility check list
-     */
-    public void addClassesToVisibilityCheck(@Observes ProcessAnnotatedType<?> pat) {
-        if (pat.getAnnotatedType().isAnnotationPresent(VisibilityChecked.class)) {
-            LogUtil.addClassToCheckForVisibility(pat.getAnnotatedType().getJavaClass());
-        }
+        return "hello";
     }
+
 }

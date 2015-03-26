@@ -19,6 +19,8 @@
 package at.struct.cdieartest.war2;
 
 import at.struct.cdieartest.be.SomeSharedEarBean;
+import at.struct.cdieartest.util.LogUtil;
+import at.struct.cdieartest.util.VisibilityChecked;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -26,9 +28,16 @@ import javax.inject.Named;
 
 @Named
 @RequestScoped
+@VisibilityChecked
 public class War2SampleBean
 {
 
-    private @Inject SomeSharedEarBean timerMonitor;
+    private @Inject SomeSharedEarBean someSharedEarBean;
+
+    public String getPing() {
+        LogUtil.logVisibility(this, "Invocation from WAR 1");
+
+        return "ok";
+    }
 
 }

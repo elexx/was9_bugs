@@ -30,23 +30,23 @@ import javax.enterprise.inject.spi.ProcessAnnotatedType;
 public abstract class BaseLoggingExtension implements Extension {
 
     public void beforeBeanDiscovery(@Observes BeforeBeanDiscovery bbd) {
-        LogUtil.logInvocation(this, null);
+        LogUtil.logExtensionInvocation(this, null);
     }
 
     public void processAnnotatedType(@Observes ProcessAnnotatedType pat) {
-        LogUtil.logInvocation(this, pat.getAnnotatedType().getJavaClass().getClassLoader(), pat.getAnnotatedType().getJavaClass().getName());
+        LogUtil.logExtensionInvocation(this, pat.getAnnotatedType().getJavaClass().getClassLoader(), pat.getAnnotatedType().getJavaClass().getName());
     }
 
     public void afterBeanDicovery(@Observes AfterBeanDiscovery bbd) {
-        LogUtil.logInvocation(this, null);
+        LogUtil.logExtensionInvocation(this, null);
     }
 
     public void afterDeploymentValidation(@Observes AfterDeploymentValidation afterDeploymentValidation) {
-        LogUtil.logInvocation(this, null);
+        LogUtil.logExtensionInvocation(this, null);
     }
 
     public void beforeShutDown(@Observes BeforeShutdown beforeShutdown) {
-        LogUtil.logInvocation(this, null);
+        LogUtil.logExtensionInvocation(this, null);
     }
 
 

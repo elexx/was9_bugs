@@ -14,29 +14,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package at.struct.cdieartest;
+package at.struct.cdieartest.util;
 
-import javax.enterprise.event.Observes;
-import javax.enterprise.inject.spi.ProcessAnnotatedType;
-
-import at.struct.cdieartest.util.BaseLoggingExtension;
-import at.struct.cdieartest.util.LogUtil;
-import at.struct.cdieartest.util.VisibilityChecked;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
 /**
- * A CDI Extension registered directly in the EAR.
+ * Marker Annotation to tell the {@link at.struct.cdieartest.EarLoggingExtension}
+ * to pick the annotated class up for visibility checks.
  *
  * @author <a href="mailto:struberg@yahoo.de">Mark Struberg</a>
  */
-public class EarLoggingExtension extends BaseLoggingExtension {
-
-
-    /**
-     * add every class we find (except Extensions) to our visibility check list
-     */
-    public void addClassesToVisibilityCheck(@Observes ProcessAnnotatedType<?> pat) {
-        if (pat.getAnnotatedType().isAnnotationPresent(VisibilityChecked.class)) {
-            LogUtil.addClassToCheckForVisibility(pat.getAnnotatedType().getJavaClass());
-        }
-    }
+@Target(value= ElementType.TYPE)
+@Retention(value= RetentionPolicy.RUNTIME)
+public @interface VisibilityChecked {
 }

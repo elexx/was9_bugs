@@ -56,6 +56,18 @@
             <version>${project.version}</version>
             <type>war</type>
         </dependency>
+        <dependency>
+            <groupId>at.struct.cdieartest</groupId>
+            <artifactId>ejb1</artifactId>
+            <version>${project.version}</version>
+            <type>ejb</type>
+        </dependency>
+        <dependency>
+            <groupId>at.struct.cdieartest</groupId>
+            <artifactId>ejb2</artifactId>
+            <version>${project.version}</version>
+            <type>ejb</type>
+        </dependency>
 
     </dependencies>
 
@@ -79,6 +91,16 @@
                             <artifactId>war2</artifactId>
                             <bundleFileName>war2.war</bundleFileName>
                         </webModule>
+                        <ejbModule>
+                            <groupId>at.struct.cdieartest</groupId>
+                            <artifactId>ejb1</artifactId>
+                            <bundleFileName>ejb1.jar</bundleFileName>
+                        </ejbModule>
+                        <ejbModule>
+                            <groupId>at.struct.cdieartest</groupId>
+                            <artifactId>ejb2</artifactId>
+                            <bundleFileName>ejb2.jar</bundleFileName>
+                        </ejbModule>
                     </modules>
 
                     <displayName>cditest</displayName>

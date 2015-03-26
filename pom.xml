@@ -34,6 +34,8 @@
 
     <modules>
         <module>be</module>
+        <module>ejb1</module>
+        <module>ejb2</module>
         <module>war1</module>
         <module>war2</module>
         <module>ear</module>
@@ -61,6 +63,12 @@
         <dependency>
             <groupId>org.apache.geronimo.specs</groupId>
             <artifactId>geronimo-ejb_3.1_spec</artifactId>
+            <version>1.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.geronimo.specs</groupId>
+            <artifactId>geronimo-jaxrs_1.1_spec</artifactId>
             <version>1.0</version>
             <scope>provided</scope>
         </dependency>
