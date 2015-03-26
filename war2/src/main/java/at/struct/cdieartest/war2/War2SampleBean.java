@@ -35,7 +35,7 @@ public class War2SampleBean
     private @Inject SomeSharedEarBean someSharedEarBean;
 
     public String getPing() {
-        LogUtil.logVisibility(this, "Invocation from WAR 1");
+        LogUtil.logVisibility(this, "Invocation from WAR 2");
 
         return "ok";
     }

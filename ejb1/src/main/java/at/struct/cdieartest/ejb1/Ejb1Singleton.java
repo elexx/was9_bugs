@@ -16,28 +16,26 @@
  */
 package at.struct.cdieartest.ejb1;
 
-import javax.ejb.Stateless;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
+import javax.annotation.PostConstruct;
+import javax.ejb.Singleton;
+import javax.ejb.Startup;
 
 import at.struct.cdieartest.util.LogUtil;
 import at.struct.cdieartest.util.VisibilityChecked;
 
 /**
- * A simple Rest endpoint just saying hello
+ * A simple singleton just saying hello
  *
  * @author <a href="mailto:struberg@yahoo.de">Mark Struberg</a>
  */
-@Path("/rest1")
-@Stateless
+@Singleton
+@Startup
 @VisibilityChecked
-public class RestEndpoint1 {
+public class Ejb1Singleton {
 
-    @GET
-    public String ping(){
-        LogUtil.logVisibility(this, "Invocation from REST EJB 1");
-
-        return "hello";
+    @PostConstruct
+    public void init(){
+        LogUtil.logVisibility(this, "Invocation from Startup in EJB 1");
     }
 
 }
