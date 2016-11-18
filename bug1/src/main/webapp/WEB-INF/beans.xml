@@ -1,0 +1,2 @@
+<!-- this is just needed here for WebSphere, who does not start CDI at all if there is no beans.xml in WEB-INF :( -->
+<beans/>
