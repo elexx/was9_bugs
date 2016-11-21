@@ -16,7 +16,10 @@
 
         <projectStage>Development</projectStage>
         <myfaces.version>2.2.8</myfaces.version>
-        <tomee.version>7.0.1</tomee.version>
+        <tomee.version>7.0.2</tomee.version>
+
+        <slf4j.version>1.7.12</slf4j.version>
+        <log4j.version>1.2.17</log4j.version>
 
         <!-- for most samples simple web-profile is enough -->
         <tomee.classifier>webprofile</tomee.classifier>
@@ -26,6 +29,7 @@
 
     <modules>
         <module>bug1</module>
+        <module>bug2</module>
     </modules>
 
 
