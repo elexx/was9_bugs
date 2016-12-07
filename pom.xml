@@ -31,6 +31,8 @@
         <module>bug1</module>
         <module>bug2</module>
         <module>bug3</module>
+        <!--<module>bug4</module>-->
+        <module>bug5</module>
     </modules>
 
 
