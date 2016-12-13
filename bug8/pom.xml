@@ -1,0 +1,34 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>at.struct.was9bugs</groupId>
+        <artifactId>was9bugs-parent</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>bug8</artifactId>
+    <packaging>pom</packaging>
+
+    <description>
+        demonstraged bug:
+            Switchting alternative from outside not possible
+            When using a library that provides multiple alternatives for an interface it is not
+            possible to change the one in use from outside the library.
+
+        howto reproduce:
+            Build $ mvn clean install
+            Deploy WAR from bug8war/target/ to WAS
+            open http://localhost:8080/bug8/index.xhtml
+            Expected output: "Service: at.struct.was9bugs.bug8.MockMyServiceImpl" because in beans.xml the Mock is configured to be used.
+    </description>
+
+    <modules>
+        <module>bug8jar</module>
+        <module>bug8war</module>
+    </modules>
+
+    <build>
+        <finalName>${project.artifactId}</finalName>
+    </build>
+</project>
