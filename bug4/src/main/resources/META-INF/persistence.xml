@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.0">
+
+    <persistence-unit name="simple-pu" transaction-type="JTA">
+        <jta-data-source>TEST_DATASOURCE</jta-data-source>
+
+        <class>at.struct.was9bugs.bug4.entities.ParentBaseEntity</class>
+        <class>at.struct.was9bugs.bug4.entities.ParentEntity</class>
+        <class>at.struct.was9bugs.bug4.entities.ChildEntity</class>
+
+        <exclude-unlisted-classes>true</exclude-unlisted-classes>
+
+        <properties>
+            <property name="eclipselink.logging.level" value="ALL"/>
+            <property name="eclipselink.logging.level.sql" value="FINE"/>
+            <property name="eclipselink.logging.parameters" value="true"/>
+
+            <!--<property name="eclipselink.ddl-generation" value="drop-and-create-tables" />-->
+        </properties>
+    </persistence-unit>
+</persistence>
