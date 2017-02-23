@@ -1,4 +1,4 @@
-### demonstrated bug: PMR todo
+### demonstrated bug: PMR 27235,010,618
 
 TCCL is not set up correctly during CDI bootstrap. 
 

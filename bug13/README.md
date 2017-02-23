@@ -1,4 +1,4 @@
-### demonstrated bug: PMR todo
+### demonstrated bug: PMR 27234,010,618
 
 Using `StringUtils.isNoneBlank(CharSequence cs)` results in exception.
 
