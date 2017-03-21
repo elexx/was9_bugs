@@ -17,7 +17,7 @@
 package at.struct.cdieartest.util;
 
 import javax.enterprise.inject.spi.Extension;
-import java.util.Arrays;
+import javax.enterprise.inject.spi.ProcessAnnotatedType;
 import java.util.Set;
 import java.util.concurrent.ConcurrentSkipListSet;
 import java.util.logging.Logger;
@@ -31,18 +31,16 @@ public class LogUtil {
     public static final String LOG_SEPARATOR = "------------------------------------------------------------------------------------------------------------------------------\n";
     private static Set<String> classesToCheck = new ConcurrentSkipListSet<String>();
 
-    public static void logExtensionInvocation(Extension extension, ClassLoader cl, String... params) {
+    public static void logExtensionInvocation(Extension extension, ProcessAnnotatedType pat) {
         Logger logger = Logger.getLogger(Thread.currentThread().getStackTrace()[2].getClassName());
 
         String methodName = Thread.currentThread().getStackTrace()[2].getMethodName();
         StringBuilder sb = new StringBuilder(methodName).append('\n');
         sb.append("Extension Instance: ").append(extension).append('\n');
         sb.append("ThreadContextClassLoader = ").append(Thread.currentThread().getContextClassLoader().toString()).append('\n');
-        if (cl != null) {
-            sb.append("Object ClassLoader = ").append(cl.toString()).append('\n');
-        }
-        if (params != null) {
-            sb.append("params = ").append(Arrays.toString(params)).append('\n');
+        if (pat != null) {
+            sb.append("Object ClassLoader = ").append(pat.getAnnotatedType().getJavaClass().getClassLoader().toString()).append('\n');
+            sb.append("AnnotatedType = ").append(pat.getAnnotatedType().getJavaClass().getName()).append('\n');
         }
         sb.append(LOG_SEPARATOR);
 

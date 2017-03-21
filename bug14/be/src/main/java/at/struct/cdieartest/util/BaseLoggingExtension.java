@@ -36,7 +36,7 @@ public abstract class BaseLoggingExtension implements Extension {
     public void processAnnotatedType(@Observes ProcessAnnotatedType pat) {
         String className = pat.getAnnotatedType().getJavaClass().getName();
         if (className.contains("at.struct.cdieartest")) {
-            LogUtil.logExtensionInvocation(this, pat.getAnnotatedType().getJavaClass().getClassLoader(), className);
+            LogUtil.logExtensionInvocation(this, pat);
         }
     }
 
