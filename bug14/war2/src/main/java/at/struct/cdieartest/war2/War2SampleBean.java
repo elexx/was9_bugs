@@ -20,7 +20,6 @@ package at.struct.cdieartest.war2;
 
 import at.struct.cdieartest.be.SomeSharedEarBean;
 import at.struct.cdieartest.util.LogUtil;
-import at.struct.cdieartest.util.VisibilityChecked;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.Initialized;
@@ -30,7 +29,6 @@ import javax.inject.Named;
 
 @Named
 @ApplicationScoped
-@VisibilityChecked
 public class War2SampleBean {
 
     private @Inject SomeSharedEarBean someSharedEarBean;

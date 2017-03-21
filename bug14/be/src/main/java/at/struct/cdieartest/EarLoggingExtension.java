@@ -21,7 +21,6 @@ import javax.enterprise.inject.spi.ProcessAnnotatedType;
 
 import at.struct.cdieartest.util.BaseLoggingExtension;
 import at.struct.cdieartest.util.LogUtil;
-import at.struct.cdieartest.util.VisibilityChecked;
 
 /**
  * A CDI Extension registered directly in the EAR.
@@ -35,8 +34,9 @@ public class EarLoggingExtension extends BaseLoggingExtension {
      * add every class we find (except Extensions) to our visibility check list
      */
     public void addClassesToVisibilityCheck(@Observes ProcessAnnotatedType<?> pat) {
-        if (pat.getAnnotatedType().isAnnotationPresent(VisibilityChecked.class)) {
-            LogUtil.addClassToCheckForVisibility(pat.getAnnotatedType().getJavaClass());
+        Class<?> javaClass = pat.getAnnotatedType().getJavaClass();
+        if (javaClass.getName().contains("at.struct.cdieartest")) {
+            LogUtil.addClassToCheckForVisibility(javaClass);
         }
     }
 }

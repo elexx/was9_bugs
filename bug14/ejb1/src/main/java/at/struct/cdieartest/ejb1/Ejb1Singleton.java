@@ -16,12 +16,11 @@
  */
 package at.struct.cdieartest.ejb1;
 
+import at.struct.cdieartest.util.LogUtil;
+
 import javax.annotation.PostConstruct;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
-
-import at.struct.cdieartest.util.LogUtil;
-import at.struct.cdieartest.util.VisibilityChecked;
 
 /**
  * A simple singleton just saying hello
@@ -30,7 +29,6 @@ import at.struct.cdieartest.util.VisibilityChecked;
  */
 @Singleton
 @Startup
-@VisibilityChecked
 public class Ejb1Singleton {
 
     @PostConstruct
