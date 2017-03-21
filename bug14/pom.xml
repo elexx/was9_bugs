@@ -42,4 +42,8 @@
         <module>war2</module>
         <module>ear</module>
     </modules>
+
+    <build>
+        <finalName>bug14-${project.artifactId}</finalName>
+    </build>
 </project>
