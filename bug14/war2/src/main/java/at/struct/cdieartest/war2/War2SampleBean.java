@@ -22,22 +22,26 @@ import at.struct.cdieartest.be.SomeSharedEarBean;
 import at.struct.cdieartest.util.LogUtil;
 import at.struct.cdieartest.util.VisibilityChecked;
 
-import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.context.Initialized;
+import javax.enterprise.event.Observes;
 import javax.inject.Inject;
 import javax.inject.Named;
 
 @Named
-@RequestScoped
+@ApplicationScoped
 @VisibilityChecked
-public class War2SampleBean
-{
+public class War2SampleBean {
 
     private @Inject SomeSharedEarBean someSharedEarBean;
+
+    public void autolog(@Observes @Initialized(ApplicationScoped.class) Object o) {
+        getPing();
+    }
 
     public String getPing() {
         LogUtil.logVisibility(this, "Invocation from WAR 2");
 
         return "ok";
     }
-
 }
