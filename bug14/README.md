@@ -1,4 +1,4 @@
-### demonstrated bug: PMR xxxxx,010,618
+### demonstrated bug: PMR 27370,010,618
 
 Having an EAR with multiple WARs/EJBs inside requires the application server to isolate them. A module (in this case a WAR or EJB) must not see another modules classes, even during CDI bootstrap. This sample inspects the bootstrapping of the application and logs the detected visibilities. 
 
