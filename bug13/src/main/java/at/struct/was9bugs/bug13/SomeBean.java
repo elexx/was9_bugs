@@ -18,7 +18,7 @@ public class SomeBean {
         StringUtils.isNoneBlank("");
 
         // And this crashes the PARENT_LAST CL
-        validator.validateValue(CarBean.class, "manufacterer", null);
+        validator.validateValue(CarBean.class, "manufacturer", null);
     }
 
 }
