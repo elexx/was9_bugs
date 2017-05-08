@@ -28,6 +28,7 @@
 
 
     <modules>
+        <module>testutils</module>
         <module>bug1</module>
         <module>bug2</module>
         <module>bug3</module>
