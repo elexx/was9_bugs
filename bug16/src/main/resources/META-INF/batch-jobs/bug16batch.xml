@@ -1,0 +1,18 @@
+<job id="bug16batch" xmlns="http://xmlns.jcp.org/xml/ns/javaee" version="1.0" restartable="false">
+
+    <step id="incidentbereinigung-step">
+        <chunk item-count="100">
+            <reader ref="bug16Reader">
+                <properties>
+                    <property name="param1" value="go"/>
+                </properties>
+            </reader>
+            <writer ref="bug16Writer">
+                <properties>
+                    <property name="param1" value="go"/>
+                </properties>
+            </writer>
+        </chunk>
+    </step>
+
+</job>
