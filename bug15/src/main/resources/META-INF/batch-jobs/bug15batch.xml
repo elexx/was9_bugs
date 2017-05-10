@@ -1,0 +1,18 @@
+<job id="bug15batch" xmlns="http://xmlns.jcp.org/xml/ns/javaee" version="1.0" restartable="false">
+
+    <step id="incidentbereinigung-step">
+        <chunk item-count="100">
+            <reader ref="bug15Reader">
+                <properties>
+                    <property name="myBoolean" value="true"/>
+                </properties>
+            </reader>
+            <writer ref="bug15Writer">
+                <properties>
+                    <property name="myBoolean" value="true"/>
+                </properties>
+            </writer>
+        </chunk>
+    </step>
+
+</job>

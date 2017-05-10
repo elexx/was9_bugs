@@ -42,6 +42,7 @@
         <module>bug12</module>
         <module>bug13</module>
         <module>bug14</module>
+        <module>bug15</module>
     </modules>
 
 
@@ -157,6 +158,12 @@
                 <groupId>org.apache.deltaspike.modules</groupId>
                 <artifactId>deltaspike-jpa-module-impl</artifactId>
                 <version>${deltaspike.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.geronimo.specs</groupId>
+                <artifactId>geronimo-jbatch_1.0_spec</artifactId>
+                <version>1.0</version>
+                <scope>provided</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>
