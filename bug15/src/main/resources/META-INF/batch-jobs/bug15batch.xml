@@ -5,6 +5,10 @@
             <reader ref="bug15Reader">
                 <properties>
                     <property name="myBoolean" value="true"/>
+                    <property name="myLong" value="20"/>
+                    <property name="myInteger" value="-1"/>
+                    <property name="myString" value="SomeString"/>
+                    <property name="myDate" value="2007-05-06"/>
                 </properties>
             </reader>
             <writer ref="bug15Writer">

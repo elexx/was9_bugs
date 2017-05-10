@@ -1,6 +1,8 @@
 ### demonstrated bug: PMR 27622,010,618
 
-When starting a Java Batch (JSR352) WAR, that uses `@Inject @BatchProperty Boolean someBool;` a `javax.enterprise.inject.UnsatisfiedResolutionException` is raised.
+When starting a Java Batch (JSR352) WAR, that uses `@Inject @BatchProperty Boolean someBool;` a `org.jboss.weld.exceptions.DeploymentException` is raised.
+
+When starting a Java Batch (JSR352) WAR, that uses `@Inject @BatchProperty Long someLong;` a `org.jboss.weld.exceptions.DeploymentException` is raised.
 
 ### how to reproduce
 
@@ -9,7 +11,7 @@ When starting a Java Batch (JSR352) WAR, that uses `@Inject @BatchProperty Boole
 
 ### actual behavior
 
-Starting the WAR failes with Unsatisfied dependencies for type Boolean with qualifiers @BatchProperty.
+Starting the WAR failes with an unsatisfied dependencies for type Boolean and Long with qualifiers @BatchProperty.
 
 ### expected behavior
 
