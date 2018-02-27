@@ -1,4 +1,4 @@
-### demonstrated bug: PMR -----,010,618
+### demonstrated bug: PMR 28908,010,618
 
 Injecting a produced typed bean which inherits from an abstract class with a parameterized constructor in a webservice leads in a NullPointerException.
 
