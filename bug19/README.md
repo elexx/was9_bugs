@@ -1,8 +1,8 @@
-### demonstrated bug: PMR -----,010,618
+### demonstrated bug: PMR 28962,010,618
 
 Deploying a war-file containing a parameterized static method in an interface, which gets called in a servlet, results in `Error 500: javax.servlet.ServletException: SRVE0207E: Uncaught initialization exception created by servlet` after the second deployment.
 
-The error also occures deploying the same war twice or using the same dependency containing the constelation above in multiple applications.
+The error also occures when deploying the same war twice or using the same dependency containing the constelation above in multiple applications.
 
 
 ### how to reproduce
@@ -24,3 +24,7 @@ Both applications should show the following output:
 Success!
 Servlet-Initialization finished.
 ```
+
+### how to fix
+
+Upgrade from SDK 8.0.5.7 to 8.0.5.10
