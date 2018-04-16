@@ -18,9 +18,23 @@ package at.struct.cdieartest.war1;
 
 import at.struct.cdieartest.util.BaseLoggingExtension;
 
+import javax.enterprise.event.Observes;
+import javax.enterprise.inject.spi.ProcessAnnotatedType;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * CDI Extension registered in war1
  * @author <a href="mailto:struberg@yahoo.de">Mark Struberg</a>
  */
 public class War1Extension extends BaseLoggingExtension {
+    private List<String> classNames = new ArrayList<>();
+
+    public void collectMe(@Observes ProcessAnnotatedType pat) {
+        classNames.add(pat.getAnnotatedType().getJavaClass().getName());
+    }
+
+    public List<String> getClassNames() {
+        return classNames;
+    }
 }
