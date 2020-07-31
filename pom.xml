@@ -12,13 +12,13 @@
         <maven.compiler.target>1.8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <deltaspike.version>1.7.2</deltaspike.version>
+        <deltaspike.version>1.9.4</deltaspike.version>
 
         <projectStage>Development</projectStage>
         <myfaces.version>2.2.8</myfaces.version>
-        <tomee.version>7.0.2</tomee.version>
+        <tomee.version>7.1.3</tomee.version>
 
-        <slf4j.version>1.7.12</slf4j.version>
+        <slf4j.version>1.7.30</slf4j.version>
         <log4j.version>1.2.17</log4j.version>
 
         <!-- for most samples simple web-profile is enough -->
@@ -49,9 +49,11 @@
         <module>bug19</module>
         <module>bug20</module>
         <module>bug21</module>
+        <module>bug22</module>
     </modules>
 
 
+<!--
     <repositories>
         <repository>
             <id>apache.snapshots</id>
@@ -77,6 +79,7 @@
             </snapshots>
         </pluginRepository>
     </pluginRepositories>
+-->
 
     <dependencies>
         <dependency>
@@ -194,7 +197,40 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
             </plugin>
+
+            <!--
+             * Just used for local testing!
+             * simply start the app with mvn tomee:run
+            -->
+            <plugin>
+                <groupId>org.apache.tomee.maven</groupId>
+                <artifactId>tomee-maven-plugin</artifactId>
+                <version>${tomee.version}</version>
+                <configuration>
+                    <tomeeVersion>${tomee.version}</tomeeVersion>
+                    <tomeeClassifier>${tomee.classifier}</tomeeClassifier>
+                    <synchronization>
+                        <extensions>
+                            <extension>.class</extension>
+                            <extension>.properties</extension>
+                            <!-- monitor css files for daniel valda -->
+                            <extension>.css</extension>
+                            <!-- if you want to update each time you build with mvn compile -->
+                        </extensions>
+                        <updateInterval>2</updateInterval>
+                    </synchronization>
+                    <!-- removed the .war extension from the "warFile" property, so we can use exploded archives -->
+                    <warFile>${project.build.directory}/${project.build.finalName}</warFile>
+                    <!-- path that is used by tomEE in the tomee:deploy and tomee:undeploy goal -->
+                    <path>${project.build.directory}/apache-tomee/webapps${project.build.finalName}</path>
+                    <args>-Dorg.apache.deltaspike.ProjectStage=${projectStage} -Djava.awt.headless=true -Dfile.encoding=UTF-8 -server -Xms128m -Xmx512m -XX:+DisableExplicitGC -Dh2.implicitRelativePath=true</args>
+                    <libs>
+                        <lib>com.h2database:h2:1.4.192</lib>
+                    </libs>
+                </configuration>
+            </plugin>
         </plugins>
+
     </build>
 
 </project>
