@@ -49,6 +49,9 @@
         <module>bug20</module>
         <module>bug21</module>
         <module>bug22</module>
+
+        <!-- WebSphere Liberty bugs -->
+        <module>wlp</module>
     </modules>
 
 

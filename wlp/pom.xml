@@ -1,0 +1,45 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>at.struct.was9bugs</groupId>
+        <artifactId>was9bugs-parent</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>wlp-parent</artifactId>
+    <packaging>pom</packaging>
+
+    <properties>
+        <liberty.version>24.0.0.6</liberty.version>
+    </properties>
+
+    <modules>
+        <module>wlp1</module>
+    </modules>
+
+    <profiles>
+        <profile>
+            <id>liberty</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>io.openliberty.tools</groupId>
+                        <artifactId>liberty-maven-plugin</artifactId>
+                        <version>3.9</version>
+                        <configuration>
+                            <runtimeArtifact>
+                                <groupId>com.ibm.websphere.appserver.runtime</groupId>
+                                <artifactId>wlp-webProfile8</artifactId>
+                                <version>${liberty.version}</version>
+                                <type>zip</type>
+                            </runtimeArtifact>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
+</project>
