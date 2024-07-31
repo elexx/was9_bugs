@@ -84,9 +84,9 @@ public class StartupBean {
     public static void logCDI(String occasion) {
         try {
             BeanManager bm = CDI.current().getBeanManager();
-            log.log(Level.INFO, "BeanManager at {0} is {1}", new Object[]{occasion, bm.toString()});
+            log.log(Level.INFO, "BeanManager at {0} is {1}, TCCL: {2}", new Object[]{occasion, bm.toString(), Thread.currentThread().getContextClassLoader().toString()});
         } catch (Exception e) {
-            log.log(Level.WARNING, "Exception during getBeanManager at " + occasion, e);
+            log.log(Level.WARNING, "Exception during getBeanManager at " + occasion + ", TCCL: " + Thread.currentThread().getContextClassLoader().toString(), e);
         }
     }
 }
