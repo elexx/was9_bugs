@@ -17,6 +17,7 @@
 
     <modules>
         <module>wlp1</module>
+        <module>wlp2</module>
     </modules>
 
     <profiles>
@@ -31,7 +32,7 @@
                         <configuration>
                             <runtimeArtifact>
                                 <groupId>com.ibm.websphere.appserver.runtime</groupId>
-                                <artifactId>wlp-webProfile8</artifactId>
+                                <artifactId>wlp-javaee8</artifactId>
                                 <version>${liberty.version}</version>
                                 <type>zip</type>
                             </runtimeArtifact>
