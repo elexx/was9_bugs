@@ -1,6 +1,6 @@
-### demonstrated bug: 
+### demonstrated bug:
 
-
+TS016861944
 CDI.current() doesn't always work
 
 ### how to reproduce
