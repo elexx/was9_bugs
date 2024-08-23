@@ -14,8 +14,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package at.struct.was9bugs.wlp1;
+package at.struct.was9bugs.wlp2;
 
+import java.security.AccessController;
+import java.security.PrivilegedAction;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadFactory;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -49,22 +54,19 @@ public class StartupBean {
 
     private void startBackgroundThread() {
         log.info("Starting new Background Thread");
-        Thread bg = new Thread() {
-            @Override
-            public void run() {
-                try {
-                    Thread.sleep(500L);
-                }
-                catch (InterruptedException e) {
-                    throw new RuntimeException(e);
-                }
-                for (int i=1; i<=3; i++) {
-                    logCDI("Background_Thread_" + i);
-                }
-            }
-        };
 
-        bg.start();
+
+        final ExecutorService bg = Executors.newFixedThreadPool(1, new OwnThradFactory());
+
+        bg.execute(()-> {
+            try {
+                Thread.sleep(500L);
+            }
+            catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            logCDI("Background_Thread");
+        });
     }
 
     @PreDestroy
@@ -87,6 +89,24 @@ public class StartupBean {
             log.log(Level.INFO, "BeanManager at {0} is {1}, TCCL: {2}", new Object[]{occasion, bm.toString(), Thread.currentThread().getContextClassLoader().toString()});
         } catch (Exception e) {
             log.log(Level.WARNING, "Exception during getBeanManager at " + occasion + ", TCCL: " + Thread.currentThread().getContextClassLoader().toString(), e);
+        }
+    }
+
+    private static class OwnThradFactory implements ThreadFactory {
+        @Override
+        public Thread newThread(Runnable runnable) {
+            Thread bg = new Thread(null, runnable, "test thread");
+            AccessController.doPrivileged(new PrivilegedAction<Void>() {
+                @Override
+                public Void run() {
+                    bg.setContextClassLoader(OwnThradFactory.class.getClassLoader());
+                    return null;
+                }
+            });
+            bg.setUncaughtExceptionHandler((t,e) -> {
+                log.log(Level.SEVERE, "Exception on Thread " + t, e);
+            });
+            return bg;
         }
     }
 }

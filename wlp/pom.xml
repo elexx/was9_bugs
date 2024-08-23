@@ -12,7 +12,7 @@
     <packaging>pom</packaging>
 
     <properties>
-        <liberty.version>24.0.0.6</liberty.version>
+        <liberty.version>24.0.0.8</liberty.version>
     </properties>
 
     <modules>
